@@ -1,0 +1,72 @@
+// Variables
+// CAREFUL - don't overwrite css propertie-value you don't want to
+// Use $var for those
+$font-size = 20px
+
+body
+	font-size: $font-size
+
+blue = #3498db
+
+h1
+	color: blue
+
+// Use the property from another
+h2
+	color: green
+	border: 1px solid @color
+	span
+		// It will take the one it finds in the property or parents
+		background-color: @color
+		color: white
+
+// Selectors
+// Both do the same
+button, a
+	border: 1px solid blue
+
+button
+a
+	color: orange
+
+// Parent
+a
+	&:hover
+		color: blue
+	&:active
+		background-color: blue
+		color: white
+
+
+// Basic mixin
+padmarg(pad=5px, marg=5px)
+	padding: pad
+	margin: marg
+
+button, a
+	padmarg(10px, 10px)
+
+// Transparent mixin
+border-radius(radius = 3px)
+	-webkit-border-radius: radius
+	-moz-border-radius: radius
+	border-radius: radius
+
+a
+	border-radius 5px
+
+// Clearfix example
+cf()
+	zoom: 1
+	&:after
+	&:before
+		content: ""
+		display: table
+	&:after
+		clear: both
+
+div
+	cf()
+
+// Built-in and custom functions
+// Conditionals

@@ -1,0 +1,188 @@
+//- Extends the layout.pug and adds content(<-variable)
+extends ../layout
+
+block content
+	div#pug-tut
+		//- Basics
+
+		//- comment <- This will not show in the html
+		// comment
+		//- This will show in the html ^
+
+		//- adds element and simple text
+		p First paragraph
+		//- adds text block
+		p
+			| Second paragraph.
+			br
+			| With break line
+		//- Multiple text lines | to use without pug elements
+		p.
+			Multiple lines with only text and tags.
+			Lorem ipsum dolor sit amet,
+			consectetur adipisicing elit,
+			sed do eiusmod tempor incididunt.
+		//- With html tag
+		p With <i>Italic html tag</i>
+		//- Id and Class
+		p#unique.multiple With id
+		//- without defined element it uses div
+		#makediv Without element
+		//- can use multiple classes
+		.n-1.n-2.n-3 With multiple class
+		//- Attributes
+		a(href="#" title="link") Link
+		//- List to test child behaviour with : | in the same line
+		ul#list
+			li.item: a.link(href="#") Item 1
+			li.item: a.link(href="#") Item 2
+			li.item: a.link(href="#") Item 3
+
+		//- Interpolation | js in pug
+
+		//- simple variable
+		- myName = "Name here"
+		p=myName
+
+		//- variable with text
+		- phoneMessage = "phone here"
+		p Insert your #{phoneMessage}
+
+		//- Execute js in Interpolation container
+		p 2 + 2 = #{2+2}
+
+		//- Variable inside attributes
+		- coolTitle = "Cool Title"
+		p: a(href="#" title=coolTitle) Link with cool title
+
+		//- Arrays
+		- heroes = ["Batman", "Superman", "Spiderman"]
+		ul
+			li=heroes[0]
+			li=heroes[1]
+			li=heroes[2]
+
+		//- Objects
+		- pc = {name: "Predator", hd: "500gb", ram: "8gb", video: "1gb"}
+		p
+			| I named my PC
+			!= "&nbsp;"+pc.name+"&nbsp;"
+			| and it has a #{pc.hd} hd, #{pc.ram} ram and an #{pc.video} videocard.
+
+		//- With tags
+		- info = "<i>Informations</i>"
+		//- Will print tags on screen
+		p= info
+		//- Won't print tags on screen
+		p!= info
+		//- With Variable with text
+		p With text #{info} !{info}
+
+		//- JS script
+		script.
+			console.log("Hello from Pug")
+
+		//- Conditionals
+
+		//- If
+		- date = new Date()
+		- hour = date.getHours();
+
+		if (hour >= 6) && (hour <= 17)
+			h3 DayTime
+		else
+			h3 NightTime
+
+		//- Unless = not operator !
+		//- Return if result is false
+		- something = false
+		unless (something)
+			p Hello from unless
+		else
+			p Somethign is true
+
+		//- Ternary
+		- age = 37
+		- canDrive = (age >= 18) ? "You can drive" : "You can not drive"
+		p=canDrive
+
+		//- Switch
+		- type = "Desktop"
+		case type
+			when "Desktop"
+				p This is a Desktop, what is your config?
+			when "Tablet"
+				p This is a Tablet, what brand it is?
+			when "Mobile"
+				p This is a Mobile, what OS are you on?
+			default
+				p This is a web browser in a unknown device
+
+		//- Looping
+
+		//- Array
+		//- index optional
+		- fruits = ["Apple", "Orange", "Mango", "Grape"]
+
+		//- With js for
+		ul
+			- for( i = 0; i < fruits.length; i++){
+				li= fruits[i]
+			- }
+
+		//- With pug each
+		ul
+			each val, index in fruits.length ? fruits : ['There are no fruits']
+				li= index+": "+val
+
+		//- Object
+		- smarthphone = {brand: "XYZ", ram: "2gb", storage: "32gb"}
+		ul
+			each val, prop in smarthphone
+				li= prop+": "+val
+
+		//- Object in Array looping
+		- employees = [{"firstName":"John", "lastName":"Doe"}, {"firstName":"Anna", "lastName":"Smith"}, {"firstName":"Peter","lastName":"Jones"}]
+
+		ul
+			each obj in employees
+				li
+					ul
+						each val, prop in obj
+							li= prop+": "+val
+
+		//- Pug while
+		- i = 1
+		ul
+			while i <= 3
+				li= i++
+
+		//- Mixins
+
+		mixin futPlayer(name, position, team)
+			li #{name} is a #{position} from #{team}
+
+		ul
+			+futPlayer("Gabriel Jesus", "forward", "Palmeiras")
+			+futPlayer("Lucas Lima", "middle", "Santos")
+
+		mixin copyr
+			| &#169;
+
+		p
+			+copyr
+			| Copyright
+
+		//- You can receive a variable number of arguments
+		//- by turning the arguments object into an array
+
+		mixin makeList()
+			- args = Array.prototype.slice.call(arguments);
+			| Args&nbsp;
+			each item in args
+				= item + " "
+
+		+makeList("Dog", "Cat", "Fish")
+
+		//- Remember extend, prepend and append
+		//- to use on js and css external files

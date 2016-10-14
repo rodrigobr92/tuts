@@ -1,0 +1,459 @@
+// MongoDb simple commands for developing
+// Inside <> is the user input data
+// || means or, only one or other
+
+###############################################################
+Initial
+###############################################################
+
+// Create a .data hidden folder for easy access
+	mkdir .data
+
+// Initialize it
+	mongod --dbpath ./.data
+
+// Run mongo shell
+	mongo
+
+// And enter in a db
+	mongo <db_name>
+
+// Can run js code from the shell like:
+	function times2(num){
+		return num * 2;
+	}
+	times2(5)
+
+// Show all databases
+	show dbs
+
+// Show current database
+	db
+
+// Create a new database or change to it
+// Db names must not contain: / \ . * < > " | ? $ :
+	use <db_name>
+
+// Data types - <value>: "string"|regex|number|boolean|null|[array]|{object}
+
+// Insert to collection
+	db.<collection>.insert({<field>: <value>, <field>: <value>})
+
+// Create a variable for insertion
+	var <var> = {
+		<field>: <value>,
+		<field>: <value>
+	}
+
+// Insert variable to collection
+	db.<collection>.insert(<var>)
+
+// Find all in collection
+	db.<collection>.find()
+
+// Make find pretty
+	db.<collection>.find().pretty()
+
+// Store single document to variable
+	var <var_name> = db.<collection>.findOne({<field_query>: <value>})
+
+// Store as array - Multiple documents
+	var <var_name> = db.<collection>.find({<field_query>: <value>}).toArray()
+
+// Update
+	db.<collection>.update(
+		{<field_query>: <value>},
+		{$set:{<field>: <value>}}
+	)
+
+// Delete
+	db.<collection>.remove({<field_query>: <value>})
+
+// More info about command
+// Run without parenthesis - ()
+	db.<collection>.<command>
+
+// Quit shell
+	exit
+
+// In the .mongorc.js located in the user folder
+// Add functions to mongoshell
+// Protect the DB, change the prompt and add an editor by adding these lines
+	var protectDB = function() {
+		db.dropDatabase = DB.prototype.dropDatabase = no;
+		DBCollection.prototype.drop = no;
+		DBCollection.prototype.dropIndex = no;
+		print("Database Protected");
+	};
+
+	operationCount = 1;
+	prompt = function(){
+		if (typeof db == 'undefined'){
+			return 'nodb > ';
+		}
+		return db + " " + (operationCount++) + " > ";
+	};
+
+	EDITOR="nano"
+
+// Edit variable with defined editor
+	edit <var>
+
+###############################################################
+Create
+###############################################################
+db.collection.insert(obj|objArray)
+###############################################################
+
+// Insert in collection
+	db.<collection>.insert({<field>: <value>})
+
+// Insert multiple objects
+	db.<collection>.insert([{<field>: <value>}, {<field>: <value>}])
+
+// Save command
+// Do destructive update if _id is defined
+	db.<collection>.save({_id: <value>, <field>: <value>})
+
+// Do insert if no _id is defined
+	db.<collection>.save({<field>: <value>})
+
+###############################################################
+Read
+###############################################################
+db.collection.find(query, projection)
+###############################################################
+// To search one word fields quotes aren't necessary
+
+// Find all documents
+	db.<collection>.find()
+
+// Make it pretty
+	db.<collection>.find().pretty()
+
+// Count how many documents
+	db.<collection>.find().count()
+
+// Limit return
+	db.<collection>.find().limit(<number>)
+
+// Skip (jump) defined results number
+// (Useful to use with limit for pagination)
+	db.<collection>.find().limit(<number>).skip(<number>)
+
+// Sort: 1 for ascending and -1 for descending
+	db.<collection>.find().sort({<field>: 1|-1})
+
+// Find exact documents - Query
+	db.<collection>.find({<field>: <value>})
+
+// Find match for multiple
+	db.<collection>.find({<field>: <value>, <field>: <value>})
+
+// Use 1 to only return defined info - Query + Options
+	db.<collection>.find({}, {<field>: 1})
+
+// Use 0 to NOT return _id or others
+	db.<collection>.find({}, {_id: 0, <field>: 0})
+
+// Mix both 0 and 1 for more control
+	db.<collection>.find({}, {_id: 0, <field>: 0, <field>: 1})
+
+// Modifyers
+// $lt (less than)
+// $gt (greater than)
+// $lte (less than or equal to)
+// $gte (greater than or equal to)
+// $eq (equal to)
+// $ne (not equal to)
+	db.<collection>.find({<field>: {$<mod>: <value>}})
+
+// Array modifiers
+// $in (inside array)
+// $nin (not inside array)
+	db.<collection>.find({<field>: {$<mod>: [<value>, <value>]}})
+
+// Conditions
+// Must be array with more than one query
+// $or
+// $and
+	db.<collection>.find({ $<cond>: [ {<field>, <value>}, {<field>, {$<mod>: <value>}} ]})
+
+// $not
+// Besides returning the values that not match the expression
+// Also returns the documents that don't have the field
+	db.<collection>.find( { <field>: { $not: { $<mod>: <value> } } } )
+
+// Regex Search for first letter and ignore case
+	db.<collection>.find({<field>: /^<firstletter>.*$/gi})
+
+// Find more than one in array
+	db.<collection>.find({<field>: {$all: [<value>, <value>]}})
+
+// Find in one location inside array field
+	db.<collection>.find({"<field>.<indexNumber>": <value>})
+
+// Find array of an specific size
+	db.<collection>.find({<field>: {$size: <value>}})
+
+// Get only required number of values from array in options
+// Use positive numbers for first in array and negative for last in array
+// Use [<index>, <index>] on value to choose exact ones
+	db.<collection>.find({}, {<field>: {$slice: <value>}})
+
+// Search a document (object) inside a document using a dot
+	db.<collection>find({<field>.<field>: <value>}, {})
+	db.<collection>find({}, {<field>.<field>: 1})
+
+###############################################################
+Update
+###############################################################
+db.collection.update(query, update, options)
+###############################################################
+
+
+// Query the ones you want to update and set a new value for a field
+	db.<collection>.update(
+		{<field_query>: <value>},
+		{$set:{<field>: <value>}}
+	)
+
+// Update field and insert more fields and values
+	db.<collection>.update(
+		{<field_query>: <value>},
+		{$set:{<field>: <value>, <newField>: <value>}}
+	)
+
+// Update multiple documents
+	db.<collection>.update(
+		{<field_query>: <value>},
+		{$set:{<field>: <value>, <newField>: <value>}},
+		{multi:true}
+	)
+
+// Increment the value
+// Use negative values in the valueToInc to decrement
+	db.<collection>.update(
+		{<field_query>: <value>},
+		{$inc:{<field>: <valueToInc>}
+	)
+
+// Multiply the value
+	db.<collection>.update(
+		{<field_query>: <value>},
+		{$mul:{<field>: <valueToInc>}
+	)
+
+// Push to array
+	db.<collection>.update(
+		{<field_query>: <value>},
+		{$push:{<field_array>: <value>}
+	)
+
+// Limit values to push to array
+// Delete old values if needed and insert the rightest values in the array
+	db.<collection>.update(
+		{<field_query>: <value>},
+		{$push:{<field_array>:
+			{$each: [<value1>, <value2>], $slice: -<number>}}
+	)
+
+// Add to array if the value doen't exist
+	db.<collection>.update(
+		{<field_query>: <value>},
+		{$addToSet:{<field_array>:<value>}}
+	)
+
+// Remove the last item in array
+// Use -1 to remove first item
+	db.<collection>.update(
+		{<field_query>: <value>},
+		{$pop:{<field_array>: 1 }}
+	)
+
+// Remove the match item in the array
+	db.<collection>.update(
+		{<field_query>: <value>},
+		{$pull:{<field_array>: <value> }}
+	)
+
+###############################################################
+Delete
+###############################################################
+db.collection.remove(query, opt)
+###############################################################
+
+// To remove one, prefer _id
+	db.<collection>.remove({_id: <value>})
+
+// To remove from query type the field and value
+	db.<collection>.remove({<field>: <value>})
+
+// Or use modifyers
+	db.<collection>.remove({<field>: {$<mod>: <value>}})
+
+// To remove all documents from collection type "{}"
+	db.<collection>.remove({})
+
+// Drop collection
+	db.<collection>.drop()
+
+// Drop database
+	db.dropDatabase()
+
+###############################################################
+Indexing
+###############################################################
+
+db.restaurants.find({ $and: [{"grades.score": {$gte: 70} }, {"grades.score": { $not: {$lt: 70} }} ] }, {_id: 0, "grades.score": 1}).pretty()
+
+// Explain - information about query status
+	db.<collection>.find().explain("executionStats")
+
+// Get only execution status about the time it took in milliseconds
+	db.<collection>.find().explain("executionStats").executionStats.executionTimeMillis
+
+// Get total documents examined for the value
+	db.<collection>.find(
+		{<field>: <value>}
+	).explain("executionStats").executionStats.totalDocsExamined
+
+// Create index
+	db.<collection>.ensureIndex({<field>: 1, <field>: 1})
+
+// Create index for unique values
+	db.<collection>.ensureIndex({<field>: 1}, {unique: true})
+
+// Check the indexes creates
+	db.<collection>.getIndexes()
+
+// Delete index
+	db.<collection>.dropIndex(<index_name>)
+
+###############################################################
+Aggregate
+###############################################################
+
+// $group
+// Get the sum for documents for the same field value
+// First <field> = field to be equal in other documents
+// <return_name> = Name of the variable to return
+	db.<collection>.aggregate([
+		{ $group: {_id: "$<field>", <return_name>: {$sum: 1} }}
+	])
+
+// Sort the return results descending
+	db.<collection>.aggregate([
+			{ $group: {_id: "$<field>", <return_name>: {$sum: 1} }},
+			{ $sort: {<return_name>: -1}}
+	])
+
+// Limit the return results descending
+	db.<collection>.aggregate([
+			{ $group: {_id: "$<field>", <return_name>: {$sum: 1} }},
+			{ $sort: {<return_name>: -1}},
+			{ $limit: 3 }
+	])
+
+// $sum: Return the sum of numbers from a specific field
+// Second <field> = Field of numbers to be sum
+	db.<collection>.aggregate([
+		{$group: {_id: "$<field>", <return_name>: {$sum: "$<field>"}}}
+	])
+
+// $avg: Return the average of numbers
+	db.<collection>.aggregate([
+		{$group: {_id: "$<field>", <return_name>: {$avg: "$<field>"}}}
+	])
+
+// $min: Return the minimal number in the fields
+	db.<collection>.aggregate([
+		{$group: {_id: "$<field>", <return_name>: {$min: "$<field>"}}}
+	])
+
+// $max: Return the max number in the fields
+	db.<collection>.aggregate([
+		{$group: {_id: "$<field>", <return_name>: {$max: "$<field>"}}}
+	])
+
+// $match
+// Return the sum of a more specific request
+	db.<collection>.aggregate([
+		{$match: {<field>: <value>} },
+		{$group: {_id: "$<field>", <return_name>: {$sum: 1}}}
+	])
+
+// $project
+// Return a field with an assigned name and hide _id field
+	db.<collection>.aggregate([
+		{$project: {<return_name>: "$<field>", _id: 0} }
+	])
+
+
+// Modifiers
+// $add
+// $subtract
+// $multiply
+// $divide
+	db.<collection>.aggregate([
+		{$project: {<return_name>: {<mod>: ["$<field1>", "<$field2>"]}, _id: 0} }
+	])
+
+
+// Get a date modifiers
+// $year
+// $month
+// $week
+// $dayOfWeek
+// $dayOfMonth
+// $dayOfYear
+// $hour
+// $minute
+// $second
+	db.<collection>.aggregate([
+		{$project: {<return_name>: {<mod>: "$<field>"}, _id: 0} }
+	])
+
+
+// Get a substring from text
+	db.<collection>.aggregate([
+		{$project: {<return_name>: {$substr: ["$<field>", <firstIndex>, <lastIndex>]}, _id: 0} }
+	])
+
+// Concat
+	db.<collection>.aggregate([
+		{$project: {<return_name>: {$concat: ["$<field1>", " - " ,"$<field2>"]}, _id: 0} }
+	])
+
+// ToUpper - Can be used where concat is
+	db.<collection>.aggregate([
+		{$project: {<return_name>: {$concat: [{$toUpper: "$<field1>"}, " - " ,"$<field2>"]}, _id: 0} }
+	])
+
+// Condition - $cond
+db.testdb.aggregate(
+	{$project:
+		{<return_name> :
+			{"$cond":
+				{
+					if : {$gte : ["$<field>", <value>] },
+					then : "<return1>", else : "<return2>"
+				}
+			}, <field>: 1, "_id" : 0}
+	})
+
+// Compare - $cmp
+// Returns 0 if equal
+// Returns 1 if greater than
+// Returns -1 if less than
+	db.testdb.aggregate(
+		{"$project" :
+			{<return_name> : {
+				$cmp : ["$<field>", <value>]
+			}, _id" : 0}
+		})
+
+
+###############################################################
+Map Reduce
+###############################################################

@@ -1,0 +1,281 @@
+// Git simple commands for developing
+// Inside <> is the user input data
+// || means or, only one or other
+
+###############################################################
+Initial
+###############################################################
+
+// Register the global username and email
+	git config --global user.name "<Your Name Here>"
+	git config --global user.email <email@email.com>
+
+// Choose the editor you want to use
+	git config --global core.editor "nano"
+
+// Show settings that you have changed
+	git config --list
+
+// Show help
+	git help
+
+// Show help for specific command
+	git help <command>
+
+// Initialize git
+	git init
+
+// Add all files
+	git add *
+
+// Add file
+	git add <filename.txt>
+
+// Add filetype
+	git add <*.type>
+
+// Add entire directory
+	git add .
+
+// Commit the changes
+	git commit
+
+
+// Commit and add the file without opening the editor
+	git commit -a -m '<Your commit message here>'
+
+// Get files status with git
+	git status
+
+// See differences between unstaged files and commited
+	git diff
+
+// See differences between staged files and commited
+	git diff --cached
+
+// Delete untracked file
+	git rm <filename.ext>
+
+// Delete staged file
+	git rm -f <filename.ext>
+
+// Remove only from staging area
+	git rm --cached <filename.ext>
+
+// Rename or move file inside git
+	git mv <filename.ext> <newFilename.ext>
+
+// Overwrite previous commit with current staged data
+	git commit --amend
+
+// Unstage file
+	git reset HEAD <filename.ext>
+
+###############################################################
+Git Ignore
+###############################################################
+
+// Create a file named .gitignore and add info
+
+// Can ignore specific files
+.DS_Store
+
+// Can use wildcards as well
+*~
+*.swp
+
+// Can also ignore all directories and files in a directory.
+.data/**/*
+
+###############################################################
+Logs
+###############################################################
+
+
+// Show log of commits
+	git log
+
+// Show log oneline
+	git log --pretty=oneline
+
+// Show log formatted
+	git log --pretty=format:"%h : %an : %ar : %s"
+
+// Only show last <number> logs
+	git log -<number>
+
+// Log with more simple info
+	git log --stat
+
+// Logs from the last week
+	git log --since=1.weeks
+
+// Log since date
+	git log --since="2016-12-31"
+
+// Log from author
+	git log --author="<Author Name>"
+
+// Log before a date
+	git log --before="2015-12-31"
+
+
+###############################################################
+Remote
+###############################################################
+
+// Add origin to remote
+	git remote add origin https://<location.com>/<username>/<repository>.git
+
+// Push everything to remote repo
+	git push -u origin master
+
+// List remote repositories
+	git remote -v
+
+// Get the data from repo but not merge
+	git fetch origin
+
+// Pull the data from the remote repo
+	git pull origin master
+
+// Push the data to the remote repo
+	git push --set-upstream origin master
+
+// Rename the name of the remote repo (usually origin)
+	git remote rename <currentname> <newname>
+
+// Clone remote repo
+	git clone <repourl>
+
+###############################################################
+Tags
+###############################################################
+
+// See tags
+	git tag
+
+// Create tag
+	git tag -a <tagname> -m "<Tag message>"
+
+// See tag details
+	git show <tagname>
+
+// Link tag to commit
+	git tag -a <tagname> <commit hash>
+
+// Push tag to remote
+	git push <reponame> <tagname>
+
+// Add all tags to remote
+	git push <reponame> --tags
+
+###############################################################
+Alias
+###############################################################
+
+// Create a alias. Can make very complex commands
+	git config --global alias.<aliasname> <command>
+
+###############################################################
+Branching
+###############################################################
+
+// List branches
+	git branch
+
+// Create a branch
+	git branch <branchname>
+
+// Change to the branch
+	git checkout <branckname>
+
+// Create a branch and change to it
+	git checkout -b <branchname>
+
+// Send branch to remote
+	git push origin <branchname>
+
+// See merged
+	git branch --merged
+
+// See unmerged
+	git branch --no-merged
+
+// See branches and last commit message
+	git branch -v
+
+// Merge branch to master
+	git merge <branchname>
+
+// Delete branch
+	git branch -d <branchname>
+
+// Delete unmerged branch
+	git branch -D <branchname>
+
+// Delete branch from remote
+	git push origin :<branchname>
+
+// To test conflicts, create two new branches
+// Change the same word in both of them
+// Merge the second to master, then try to merge the first
+
+// Use a mergetool to solve merge conflicts
+// Meld for Linux and Windows
+	git mergetool
+
+// Fast-forward branch to updated commit
+// Go to outdated branch and run
+	git rebase <updatedbranch>
+
+// Revert to a previous commit
+// Delete changes but keeps commit
+// One commit
+	git revert HEAD
+// Older commit
+	git revert <commithash>
+
+###############################################################
+Reset
+###############################################################
+
+// Remove files from stage
+	git reset HEAD
+
+// Reset a single file
+	git reset <filename>
+
+// Remove files from stage and remove changes to match last or hash commit
+// After a commit, the commits made after the reset time are deleted
+	git reset <HEAD>||<commithash> --hard
+
+// Clean untracked files
+// List untracked files
+	git clean -n
+// Delete untracked files
+	git clean -f
+// Delete untracked files and directories
+	git clean -df
+
+###############################################################
+SSH key
+###############################################################
+
+// Generate keygen
+	ssh-keygen -t rsa -C "<email@email.com>"
+// Type the filename and password you want
+// Copy the content of the filename.pub
+// Go to the remote config ssh page and add it
+
+// Add to ssh
+	ssh-add <sshkeyfile>
+
+// Create a config file for multiple accounts
+Host <github>
+	HostName <github.com>
+	User git
+	IdentityFile <sshlocation/filename>
+
+// Add the remote repo with ssh
+	git remote add <myorigin> git@<github>:<keyname>/<reponame>.git

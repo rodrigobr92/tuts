@@ -1,0 +1,127 @@
+// Open file
+	vim <filename.ext>
+
+// Move outside edit mode on abnt2
+	h = left
+	j = down
+	k = up
+	l = right
+
+// Press "i" - insert mode
+// Press "Esc" leaves insert mode
+
+// Press "a" to insert in the next character
+// Press "I"(capital) - insert in the start of the line
+// Press "A"(capital) - insert in the end of the line
+// Press "o" - insert in an empty line below
+// Press "O"(capital) - insert in an empty line above
+// Press "s" - deletes selected chars and start insertion
+// Press "S"(capital) - deletes the line and start insertion
+
+// Press ":w" to save the file
+// Press ":q" to quit the file
+// Press ":wq" to save the file and quit the vim editor
+// Press ":x" to save the file and quit the vim editor
+// Press "Shift + ZZ" to save the file and quit the vim editor
+// Press ":q!" to force quit the file without saving changes
+// Press ":w <filename>" to save as (different filename)
+
+// Press "yy" to copy a line
+// Press "dd" to cut a line
+// Press "p" to paste
+// Press "<num>yy" to copy multiple lines. Example: 3yy, copy 3 lines from the cursor position
+// Press "<num>dd" to cut multiple lines. Example: 3dd, copy 3 lines from the cursor position
+// Press "<num>yw" to copy multiple words.
+// Press "<num>yd" to cut multiple words.
+
+// To copy only a selection enter visual mode
+// Press "v" to enter visual mode
+// Use moving keys to select the portion and press "y" or "d" to copy or cut the selection
+// Press "CTRL + v" to enter visual block mode to copy or cut as columns
+
+// To delete
+// Press "x" to delete right (del)
+// Press "X"(capital) to delete left (backspace)
+
+// To undo
+// Press "u" to undo changes
+// Press "CTRL + R" to redo
+
+// Split terminal screen with two files
+	:split <filename>
+// Change between panes
+	CTRL + ww
+// You can copy and paste between then and use all shortcuts normally
+
+// Copy entire file content to another
+	:r <filepath/filename>
+
+// Search the file
+// Press "/<search>" to find up/down
+// Press "?<search>" to find down/up
+// Press enter and "n" to look next or insert keys
+
+// Search and replace
+
+// Current line
+	:s/<oldword>/<newword>
+// Specific line
+	:<num>s/<oldword>/<newword>
+// Multiple in the same line
+	:<num>s/<oldword>/<newword>/g
+// Entire file
+ 	:%s/<oldword>/<newword>
+// Entire file with confirmation
+	:%s/<oldword>/<newword>/gc
+// Entire file with confirmation and case insensitive
+	:%s/<oldword>/<newword>/gci
+
+// Open another file and close the one open
+	:e <filepath/name>
+
+// Force if there was unsaved changes
+	:e! <filepath/name>
+
+// Recognizes sintax of code files
+	:syntax on
+	:syntax off
+
+// See line numbers
+	:set number
+	:set nonu
+
+// Create shortcuts/abbreviations to text
+	:ab <short> <fullword>
+	// When in insert mode you press the shortcut + space/tab/enter it will insert full word
+
+// Set options
+
+// Set auto indent
+	:set ai
+	:set noai
+
+// Remove sound cues, add visual cues
+	:set visualbell
+
+// Ignore case for search
+	:set ic
+	:set noic
+
+// set bg light or dark
+	:set bg=light
+	:set bg=dark
+
+// Set tabs space
+	:set tabstop=4
+
+// Show closing match
+	:set showmatch
+
+// Show cursor line
+	:set cursorline
+
+// Sort strings
+	:<range>sort
+	:<range>sort!
+	// Sort numbers
+	:<range>sort n
