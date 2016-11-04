@@ -1,0 +1,60 @@
+// Open the terminal
+    <Mod>+Enter
+
+// Open application search
+	<Mod>+d 
+
+// Close app
+	<Mod>+Shift+q
+
+// Insert next vertically
+	<Mod>+v
+
+// Insert next horizontally
+	<Mod>+h
+
+// Change visible apps
+	<Mod>+<ArrowKeys>
+	<Mod>+<jkl;>
+
+// Stack mode
+	<Mod>+s
+
+// Tiling mode
+	<Mod>+e
+
+// Tab mode
+	<Mod>+w
+
+// Resize mode
+	<Mod>+r
+	// Use arrows or jkl; to resize
+
+// Change position in tiling mode
+	<Mod>+Shift+<ArrowKeys>
+	<Mod>+Shift+<jkl;>
+
+// New workspace
+	<Mod>+<number>
+
+// Change app workspace
+	<Mod>+Shift+<number>
+
+// Log out
+	<Mod>+Shift+e
+
+// Lock screen - open terminal and type "i3lock"
+
+// i3 config located in .config/i3/config
+// After changes reload with
+	<Mod>+Shift+r
+
+// Good file managers for i3wm
+// Ranger
+
+// Change wallpaper
+// Install feh
+// Download wallpaper
+	feh --bg-scale <bg.ext>
+
+
