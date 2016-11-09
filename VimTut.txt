@@ -7,6 +7,13 @@
 	k = up
 	l = right
 
+// Press "w" to jump words
+// Press "b" to jump words backward
+// Press "0" to go to the start of the line
+// Press "$" to go to the end of the line
+// Press "gg" to go to the begginning of the file
+// Press "G" to go to the end of the file
+
 // Press "i" - insert mode
 // Press "Esc" leaves insert mode
 
@@ -36,8 +43,9 @@
 
 // To copy only a selection enter visual mode
 // Press "v" to enter visual mode
-// Use moving keys to select the portion and press "y" or "d" to copy or cut the selection
-// Press "CTRL + v" to enter visual block mode to copy or cut as columns
+// Use moving keys to select the portion and press "y" or "d" to copy or cut the selection and "p" to paste
+// Press "CTRL + v" to enter visual block mode to copy/cut/paste collumns
+// Press "Shift + v" to enter visual line mode to copy/cut/paste line
 
 // To delete
 // Press "x" to delete right (del)
