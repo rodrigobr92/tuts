@@ -84,7 +84,10 @@
 // Entire file with confirmation and case insensitive
 	:%s/<oldword>/<newword>/gci
 
-// Open another file and close the one open
+// Restore file to saved state
+	:e!
+
+// Open another file in the buffer
 	:e <filepath/name>
 
 // Force if there was unsaved changes
@@ -133,3 +136,26 @@
 	:<range>sort!
 	// Sort numbers
 	:<range>sort n
+
+// Buffers
+// Create a new buffer
+	:new
+
+// List all buffers
+	:ls
+
+// Select next buffer
+	:bn
+
+// Select previous buffer
+	:bp
+
+// Close current buffer
+	:bw
+
+// Select buffer by number
+	:b<num>
+
+// Opened buffer by filename case sensitive, 
+// It doesn't need to have full filename
+	:b <partial filename> 
