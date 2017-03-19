@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Js Tut Events</title>
+        <style media="screen">
+            * {
+                box-sizing: border-box;
+            }
+            button {
+                display: block;
+                float: left;
+                width: 18%;
+                margin: 1%;
+                height: 100px;
+            }
+            div {
+                clear: both;
+            }
+            div#mouseXY {
+                width: 100%;
+                padding: 10px;
+                border: 10px solid black;
+                text-align: center;
+                cursor: crosshair;
+				font-size: 12px;
+            }
+            form {
+                margin: 1%;
+                width: 30%;
+            }
+            form input,
+            form label,
+            form span,
+            form textarea {
+                display: block;
+            }
+
+            form label {
+                margin: 10px 0;
+                cursor: pointer;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div>
+            <h2>Mouse events</h2>
+            <button type="button" id="btnClick">onclick</button>
+            <button type="button" id="btnDblClick">ondblclick</button>
+            <button type="button" id="btnMouseOverOut">onmouseover/out</button>
+            <button type="button" id="btnMouseDownUp">onmousedown/up</button>
+            <button type="button" id="btnMouseMove">onmousemove</button>
+            <div id="mouseXY">
+                <p>
+                    x:
+                    <span id="mouseX"></span>
+                    y:
+                    <span id="mouseY"></span>
+                </p>
+                <p>
+                    clientX:
+                    <span id="clientX"></span>
+                    clientY:
+                    <span id="clientY"></span>
+                </p>
+                <p>
+                    layerX:
+                    <span id="layerX"></span>
+                    layerY:
+                    <span id="layerY"></span>
+                </p>
+                <p>
+                    movementX:
+                    <span id="movementX"></span>
+                    movementY:
+                    <span id="movementY"></span>
+                </p>
+                <p>
+                    offsetX:
+                    <span id="offsetX"></span>
+                    offsetY:
+                    <span id="offsetY"></span>
+                </p>
+                <p>
+                    pageX:
+                    <span id="pageX"></span>
+                    pageY:
+                    <span id="pageY"></span>
+                </p>
+                <p>
+                    screenX:
+                    <span id="screenX"></span>
+                    screenY:
+                    <span id="screenY"></span>
+                </p>
+            </div>
+        </div>
+
+        <h2>Keyboard Events</h2>
+        <form>
+            <label for="iptKeyUp">KeyUp</label>
+            <input type="text" id="iptKeyUp" placeholder="KeyUp">
+            <span id="txtKeyUp"></span>
+            <label for="iptKeyDown">KeyDown</label>
+            <input type="text" id="iptKeyDown" placeholder="KeyDown">
+            <span id="txtKeyDown"></span>
+            <label for="iptKeyPress">KeyPress</label>
+            <input type="text" id="iptKeyPress" placeholder="KeyPress">
+            <span id="txtKeyPress"></span>
+        </form>
+
+        <h2>Clipboard Events</h2>
+        <form>
+            <label for="copyCutPaste">Copy cut and paste</label>
+            <textarea rows="2" cols="30" id="copyCutPaste">Lorem ipsum dolor sit amet</textarea>
+            <span id="ccp"></span>
+        </form>
+
+        <h2>Form Events</h2>
+        <form id="formEvents">
+            <label for="iptBlur">onblur</label>
+            <input type="text" id="iptBlur" value="Blur">
+            <label for="iptChange">onchange</label>
+            <input type="text" id="iptChange" value="Change">
+            <label for="iptFocus">onfocus</label>
+            <input type="text" id="iptFocus" value="Focus">
+            <label for="iptSelect">onselect</label>
+            <input type="text" id="iptSelect" value="Select some text">
+            <label for="iptCombo">Form events max combo</label>
+            <input type="text" id="iptCombo" value="That'll be fun">
+            <span id="txtCombo"></span>
+            <label for="iptSubmit">onsubmit</label>
+            <input type="submit" id="iptSubmit" value="Submit">
+        </form>
+
+        <script src="events.js" charset="utf-8"></script>
+    </body>
+</html>
