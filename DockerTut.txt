@@ -1,0 +1,34 @@
+// Check the running containers
+docker ps
+
+// Simple hello world from ubuntu container
+docker run -ti ubuntu echo "Hello World"
+
+// If you run it again it will be no need to pull the image 
+// The container is no longer running after the command
+
+// Launch container in detach mode
+docker run -d <image>
+
+// Launch container with a name for easy access
+docker run --name <myContainer> <image>
+
+// Link two containers
+docker run -it --link <containerName>:<linkName> <image>
+
+// Stop container
+docker stop <myContainer>
+
+// Start stopped container
+docker start <myContainer>
+
+// If you link it to other the linked container will be down as well
+
+// Check the logs of a detached container
+docker logs <myContainer>
+
+// Fix the logs in the terminal
+docker logs -f <myContainer>
+
+// Execute comand inside container detached
+docker exec <myContainer> <myCommand>
