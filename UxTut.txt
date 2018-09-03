@@ -1,0 +1,202 @@
+5 phases for the ux designer
+	1 - Objective
+	2 - Research
+	3 - Wireframe 
+	4 - Test
+	5 - Build
+
+UX 3 fields
+	1 - Research: Testing
+	2 - Design: Layout from testing
+	3 - Strategy: Business goals
+
+UI vs UX
+	UI: Color, icons, fonts, tabs, the actual mechanics of the site
+	UX: Research, testing, feedback, iterating, changing
+
+Getting started
+	Don't ask for permission - Just do it for yourself
+	Make it measurable - Show how it is better and faster
+
+Set your objectives
+	
+UX research process
+	Use the data you have
+	Analytics
+	Mockup and test
+	Competitors
+
+Competitor UX research
+	See the ones in the field you want to build
+	What's is your position
+	Get the best ideas
+
+UX personas / User profiles
+	Position
+	Age
+	Location
+	Needs - What he wants to do
+	Description - Who he is
+	
+	- Keep it in the personas, don't be to generalist
+	- Do it as a group
+	- Max 3 personas
+	- Analise the older data to get the personas
+	- Try to get the most valuable ones financially
+	- Try surveys online and offline
+
+Group exercise - Creating personas
+	Most people who are envolved in the project
+	Who are the clients and people who are going to be using
+	Where the income comes from
+	Make the history of them
+	Remember to focus on the basics
+	Use tooltips
+	Be a facilitator
+	Use a photo/avatar to remember them by
+
+UX feature list
+	Also do it as a group
+	Understand who the features are for from the personas
+	It needs X, Y, Z, brainstorming style
+	See the essentials, prioritize, MVP style
+	Make votes, use fake money to see what is actually valuable
+	Incentive discussion
+	Compare features to get priorities, get the whys 
+		- Relevance, difficulty to do, wow factor
+		- Add 1 to the most important in the vs feature
+
+UX cards sorts - open and closed
+	Architect the categories with tooltips
+	Get the products or important informations and write it
+	Then group then with or without a group name
+	Get lots of variations to find the better ones
+
+UX wireframing tools
+	Do it by hand first to get to see fast the basic features
+	Do multiple wireframes to see the best solution
+	Predict animations and movement
+	Check features in similar work
+	Tools
+		Balsamiq
+		Mockingbird
+		Mockup Builder
+
+Test your wireframes with people
+
+Moodboards* (Look and feel of the UI from other projects) inspiration
+	behance UI section
+	nice.co - chrome extension
+	pinterest
+	webby awards
+	awwwards
+	google ux/ui
+
+Tips for building ux/ui designs
+	Add clickability for testing
+	material.google.com for basics of UI and interactions
+	Check the above the fold - Before scroll
+	Borough credibility, using partners to add trust
+	fivesecondtest.com
+
+What tools can I use to build my ux mockup
+	XD, Sketch, Invision Studio, Photoshop + Illustrator
+	Invision online can create interactivity from simple images and sharing
+
+Finding users for testing
+	usertesting.com - US$ 50 for user
+	fiverr.com - User testing - Also hire the type of user for test
+	upwork.com - Find freelancers to do your testing
+	Check current users - Give then incentive
+
+Methods for user testing
+	In person or online/remote
+	Live versions or prototypes
+	Tools
+		invisionapp.com
+		usertesting.com
+		usabilla.com
+
+Observational testing
+	Most valuable test
+	Explain what you're doing to relax the user
+	Write down some tasks
+		- Whats the product
+		- Book an intro course
+		- Find a course by name
+		- Etc. 
+	Make sure the language don't help the user
+	Don't talk/teach unless they are REALLY stuck
+	Record it
+	Look at their attitudes and questions
+
+More detailed user testing
+	Hotspots - Mouse tracking
+	Test with other UX experts
+	Diary, longer tests, feedback from users
+
+How many people to get for user testing
+	Magic number is 5, in the 3 personas
+
+UX reporting
+	It's not sexy but it's important
+	Give yourself time
+	Keep it short
+	Include
+		- Time taken
+		- Quotes from users
+		- Screenshots/Videos
+		- Questions asked
+	Always repeat for new sections or functions
+	Figure out some numbers/metrics to answer to business owners or bosses how it got better
+
+For sites already on air
+	A/B testing - keep it small
+	optimizely.com
+	vwo.com
+	Google - The content experiments interface
+	Check the questions in the live chat
+
+How to stay current in UX
+	meetup.com
+	Follow good people to see new data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
